@@ -1,16 +1,11 @@
-const inputForm = document.querySelector('#validation-input');
-const inputLength = Number(inputForm.getAttribute('data-length'));
-const classExist = inputForm.classList;
 
-const changeColor = () => { inputForm.value.length >= inputLength ? inputForm.classList.add('valid') 
-    : inputForm.classList.add('invalid')
-};
 
-const removeColor = () => { 
-    if (classExist.value !== '')  {
-        inputForm.classList.remove(classExist.value);
-    }
-};
+const inputRef = document.querySelector("#validation-input");
+const validationInput = inputRef.dataset.length;
 
-inputForm.addEventListener('blur', changeColor);
-inputForm.addEventListener('focus', removeColor);
+function borderPainter(event) {
+  return event.target.value.length == validationInput
+  ? inputRef.setAttribute("class", "valid")
+  : inputRef.setAttribute("class", "invalid");
+}
+  inputRef.addEventListener("blur", borderPainter);
